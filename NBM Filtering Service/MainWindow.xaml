@@ -1,0 +1,459 @@
+﻿<Window x:Class="NBM_Filtering_Service.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NBM_Filtering_Service"
+        mc:Ignorable="d"
+        Title="Napier Bank Messaging" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="9.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ui:SimpleStackPanel Name="MenuView" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+            <TextBlock Text="Napier Bank Messaging"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource HeaderTextBlockStyle}"/>
+            <Button Height="50" 
+                    Width="120" 
+                    Content="Send Message" 
+                    Click="SendMessageViewBtn_Click" 
+                    Style="{StaticResource AccentButtonStyle}" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+            <Button Height="50" 
+                    Width="120" 
+                    Margin="5" 
+                    Content="Load Message" 
+                    Click="LoadFileViewBtn_Click"
+                    Style="{StaticResource AccentButtonStyle}" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+            <Button Height="50" 
+                    Width="120" 
+                    Content="Read Messages" 
+                    Click="ReadMessagesViewBtn_Click"
+                    Style="{StaticResource AccentButtonStyle}" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+        </ui:SimpleStackPanel>
+        <ui:SimpleStackPanel Name="MessageInputView" 
+                             Grid.Row="1" 
+                             Visibility="Collapsed" 
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center">
+            <ui:SimpleStackPanel Orientation="Vertical" 
+                                 HorizontalAlignment="Left">
+
+                <Label 
+                    Content="Message ID">
+                </Label>
+                <ui:SimpleStackPanel>
+                    <Label Name="MessageIDErrorText"
+                           Foreground="Red"
+                           Content="Error Text"
+                           Visibility="Collapsed"/>
+                    <TextBox Name="MessageIDTextBox" 
+                             Height="30" 
+                             Width="200"
+                             Margin="0,10"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center" />
+                </ui:SimpleStackPanel>
+            </ui:SimpleStackPanel>
+            <ui:SimpleStackPanel Orientation="Vertical" 
+                                 HorizontalAlignment="Center">
+                <Label 
+                    Content="Message Text">
+                </Label>
+                <ui:SimpleStackPanel>
+                    <Label Name="MessageErrorText"
+                           Foreground="Red"
+                           Content="Error Text"
+                           Visibility="Collapsed"/>
+                    <TextBox Name="MessageTextBox" 
+                             Height="200" 
+                             Width="400"
+                             Margin="0,10"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             TextWrapping="Wrap"/>
+                </ui:SimpleStackPanel>
+            </ui:SimpleStackPanel>
+            <ui:SimpleStackPanel Orientation="Horizontal" 
+                                 HorizontalAlignment="Center" 
+                                 VerticalAlignment="Bottom">
+                <Button Height="50" 
+                        Width="120" 
+                        Content="Send Message" 
+                        Click="SendMessageBtn_Click"
+                        Style="{StaticResource AccentButtonStyle}" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"/>
+                <Button Height="50" 
+                        Width="120"
+                        Margin="10"
+                        Content="Back" 
+                        Click="BackToMenuBtn_Click"
+                        Style="{StaticResource AccentButtonStyle}" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"/>
+                <Button Height="50" 
+                        Width="120" 
+                        Content="Show Summary" 
+                        Click="ShowSummaryBtn_Click"
+                        Style="{StaticResource AccentButtonStyle}" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"/>
+            </ui:SimpleStackPanel>
+        </ui:SimpleStackPanel>
+        <ui:SimpleStackPanel Name="MessageLoadFileView" 
+                             Grid.Row="1" 
+                             Visibility="Collapsed" 
+                             VerticalAlignment="Center">
+            <TextBlock Text="Load Message" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <ui:SimpleStackPanel Orientation="Horizontal" 
+                                 HorizontalAlignment="Center" 
+                                 VerticalAlignment="Center">
+                <Border BorderBrush="Black"
+                        BorderThickness="0.6"
+                        CornerRadius="1"
+                        Margin="10">
+                    <TextBlock Name="FilePathTxtBlk" 
+                       Height="25" 
+                       Width="500"
+                       Style="{StaticResource BodyTextBlockStyle}" />
+                </Border>
+                <Button Content="Browse" 
+                        Height="32" 
+                        Width="80"
+                        Margin="4"
+                        Click="BrowseFilesBtn_Click"/>
+            </ui:SimpleStackPanel>
+            <ui:SimpleStackPanel Orientation="Horizontal" 
+                                 HorizontalAlignment="Center" 
+                                 VerticalAlignment="Bottom">
+                <Button Height="50" 
+                        Width="120"
+                        Margin="5"
+                        Content="Load Message" 
+                        Click="SendLoadedMessageBtn_Click"
+                        Style="{StaticResource AccentButtonStyle}" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"/>
+                <Button Height="50"
+                        Width="100"
+                        Margin="5"
+                        Content="Back" 
+                        Click="BackToMenuBtn_Click"
+                        Style="{StaticResource AccentButtonStyle}" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"/>
+            </ui:SimpleStackPanel>
+        </ui:SimpleStackPanel>
+        <ui:SimpleStackPanel Name="MessageReaderView" 
+                             Grid.Row="1" 
+                             Visibility="Collapsed" 
+                             VerticalAlignment="Center" 
+                             HorizontalAlignment="Center">
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+                <ui:SimpleStackPanel Grid.Row="0">
+                    <ui:SimpleStackPanel>
+                        <Label Content="Message Type"/>
+                        <ComboBox Name="MessageTypeReaderCmbBox" 
+                                  Height="30" 
+                                  Width="150" 
+                                  SelectionChanged="ReaderMessageType_SelectionChanged">
+                            <ComboBoxItem IsSelected="True">SMS Message</ComboBoxItem>
+                            <ComboBoxItem>Email Message</ComboBoxItem>
+                            <ComboBoxItem>Tweet Message</ComboBoxItem>
+                        </ComboBox>
+                    </ui:SimpleStackPanel>
+                    <ui:SimpleStackPanel Name="SMSReader" 
+                                         Visibility="Visible">
+                        <Label Content="Message ID"/>
+                        <Border BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="1"
+                                Width="100"
+                                HorizontalAlignment="Left">
+                            <TextBlock Name="smsIDReaderField"
+                                       Width="100"
+                                       HorizontalAlignment="Left"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                        </Border>
+                        <Label Content="Phone Number"/>
+                        <Border BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="1"
+                                Width="150"
+                                HorizontalAlignment="Left">
+                            <TextBlock Name="smsPhoneReaderField" 
+                                       Width="150"
+                                       HorizontalAlignment="Left"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                        </Border>
+                        <Label Content="Message Text"/>
+                        <Border BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="1">
+                            <TextBlock Name="smsTextReaderField" 
+                                   Height="220" 
+                                   Width="500"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   TextWrapping="Wrap"/>
+                        </Border>
+
+                    </ui:SimpleStackPanel>
+                    <ui:SimpleStackPanel Name="EmailReader" 
+                                         Visibility="Collapsed">
+                        <ui:SimpleStackPanel Orientation="Horizontal">
+                            <ui:SimpleStackPanel>
+                                <Label Content="Message ID"/>
+                                <Border BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Width="120"
+                                    HorizontalAlignment="Left">
+                                    <TextBlock Name="emailIDReaderField" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                                </Border>
+                                <Label Content="Email"/>
+                                <Border BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Width="120"
+                                    HorizontalAlignment="Left">
+                                    <TextBlock Name="emailSenderReaderField"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                                </Border>
+                                <Label Content="Type"/>
+                                <Border BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Width="120"
+                                    HorizontalAlignment="Left">
+                                    <TextBlock Name="emailTypeReaderField" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                                </Border>
+                                <Label Content="Subject"/>
+                                <Border BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    Width="120"
+                                    HorizontalAlignment="Left">
+                                    <TextBlock Name="emailSubjectReaderField" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                                </Border>
+                                <ui:SimpleStackPanel Name="SIRFields" 
+                                    Visibility="Collapsed">
+                                    <Label Content="SIR"/>
+                                    <Border BorderBrush="Black"
+                                        BorderThickness="1"
+                                        CornerRadius="1"
+                                        Width="120"
+                                        HorizontalAlignment="Left">
+                                        <TextBlock Name="emailSIRReaderField" 
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"/>
+                                    </Border>
+                                    <Label Content="Sort Code"/>
+                                    <Border BorderBrush="Black"
+                                        BorderThickness="1"
+                                        CornerRadius="1"
+                                        Width="120"
+                                        HorizontalAlignment="Left">
+                                        <TextBlock Name="emailSortCodeReaderField" 
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"/>
+                                    </Border>
+                                    <Label Content="Nature of Incident"/>
+                                    <Border BorderBrush="Black"
+                                        BorderThickness="1"
+                                        CornerRadius="1"
+                                        Width="120"
+                                        HorizontalAlignment="Left">
+                                        <TextBlock Name="emailNoTReaderField" 
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Center"
+                                           Style="{StaticResource BodyTextBlockStyle}"/>
+                                    </Border>
+                                </ui:SimpleStackPanel>
+                            </ui:SimpleStackPanel>
+                            <ui:SimpleStackPanel Margin="60,0">
+                                <Label Content="Message Text"/>
+                                <Border BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="1"
+                                    HorizontalAlignment="Left">
+                                    <TextBlock Name="emailTextReaderField" 
+                                       Height="240" 
+                                       Width="450"
+                                       TextWrapping="Wrap"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                                </Border>
+                            </ui:SimpleStackPanel>
+                        </ui:SimpleStackPanel>
+                    </ui:SimpleStackPanel>
+                    <ui:SimpleStackPanel  Name="TweetReader" 
+                                          Visibility="Collapsed" 
+                                          VerticalAlignment="Center">
+                        <Label Content="Message ID"/>
+                        <Border BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="1"
+                                Width="120"
+                                HorizontalAlignment="Left">
+                            <TextBlock Name="tweetIDReaderField"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                        </Border>
+                        <Label Content="Sender ID"/>
+                        <Border BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="1"
+                                Width="120"
+                                HorizontalAlignment="Left">
+                            <TextBlock Name="tweetSenderIDReaderField" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                        </Border>
+                        <Label Content="Message Text"/>
+                        <Border BorderBrush="Black"
+                                BorderThickness="1"
+                                CornerRadius="1"
+                                HorizontalAlignment="Left">
+                            <TextBlock Name="tweetTextReaderField" 
+                                       Height="220" 
+                                       Width="500"
+                                       TextWrapping="Wrap"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                        </Border>
+                    </ui:SimpleStackPanel>
+                </ui:SimpleStackPanel>
+
+                <ui:SimpleStackPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Height="35" 
+                            Width="80" 
+                            Margin="5,10"
+                            Content="Previous" 
+                            Click="PreviousMessageBtn_Click"/>
+                    <Button Height="35" 
+                            Width="60" 
+                            Margin="5,10"
+                            Content="Next" 
+                            Click="NextMessageBtn_Click"/>
+                </StackPanel>
+                <Button Content="Back" 
+                        Height="45" 
+                        Width="150" 
+                        Click="BackToMenuBtn_Click"
+                        Style="{StaticResource AccentButtonStyle}" />
+            </ui:SimpleStackPanel>
+        </Grid>
+
+        </ui:SimpleStackPanel>
+        <ui:SimpleStackPanel Name="SummaryView" 
+                             Grid.Row="1" 
+                             Visibility="Collapsed" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Top">
+            <Grid HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ui:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <ListView Name="TrendingList">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Focusable" 
+                                        Value="false"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" 
+                                                Width="150"
+                                                DisplayMemberBinding="{Binding Key}"/>
+                                <GridViewColumn Header="Number" 
+                                                Width="75" 
+                                                DisplayMemberBinding="{Binding Value}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="MentionsList">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Focusable" 
+                                        Value="false"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" 
+                                                Width="150" 
+                                                DisplayMemberBinding="{Binding Key}"/>
+                                <GridViewColumn Header="Number" 
+                                                Width="75" 
+                                                DisplayMemberBinding="{Binding Value}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="SirList">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Focusable" 
+                                        Value="false"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" 
+                                                Width="150" 
+                                                DisplayMemberBinding="{Binding Key}"/>
+                                <GridViewColumn Header="Type"
+                                                Width="125" 
+                                                DisplayMemberBinding="{Binding Value}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ui:SimpleStackPanel>
+                <Button Grid.Row="1" 
+                        Height="50" 
+                        Width="100" 
+                        Content="Back" 
+                        Click="SendMessageViewBtn_Click"
+                        Margin="0,30"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource AccentButtonStyle}" />
+            </Grid>
+        </ui:SimpleStackPanel>
+    </Grid>
+</Window>

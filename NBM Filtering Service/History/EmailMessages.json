@@ -1,0 +1,46 @@
+[
+  {
+    "Email": "semirek2301@gmail.com",
+    "SIR": "SIR 23/09/1997",
+    "Type": "SIR",
+    "Subject": "[xyz]",
+    "SortCode": "[88-88-88]",
+    "NatureOfIncident": "[Theft]",
+    "MessageID": "E123123123",
+    "MessageBody": "semirek2301@gmail.com SIR: 12/03/2023 NatureOfIncident: [Bomb Threat] SortCode: [88-88-88] Subject: [xyz] test test www.googlssemirek2301@gmail.com SIR: 12/03/2023 NatureOfIncident: [Bomb Threat] SortCode: [88-88-88] Subject: [xyz] test test www.google.com http:\\\\www.anywhere.com test test SIR 23/09/1997 Nature-of-Incident: [Theft] Sort-Code: [88-88-88]",
+    "MessageText": "semirek2301@gmail.com SIR: 12/03/2023 NatureOfIncident: [Bomb Threat] SortCode: [88-88-88] Subject: [xyz] test test www.googlssemirek2301@gmail.com SIR: 12/03/2023 NatureOfIncident: [Bomb Threat] SortCode: [88-88-88] Subject: [xyz] test test <URL Quarantined> http:\\\\<URL Quarantined> test test SIR 23/09/1997 Nature-of-Incident: [Theft] Sort-Code: [88-88-88]"
+  },
+  {
+    "Email": "semirek2301@gmail.com",
+    "SIR": "SIR 23/09/1997",
+    "Type": "SIR",
+    "Subject": "This is test email",
+    "SortCode": "88-88-88",
+    "NatureOfIncident": "Bomb Threat",
+    "MessageID": "E123123123",
+    "MessageBody": "semirek2301@gmail.com SIR 23/09/1997 Sort-Code: [88-88-88] Nature-of-Incident: [Bomb Threat] Subject: [This is test email] This is test email which contains URLs like www.google.com",
+    "MessageText": "semirek2301@gmail.com SIR 23/09/1997 Sort-Code: [88-88-88] Nature-of-Incident: [Bomb Threat] Subject: [This is test email] This is test email which contains URLs like <URL Quarantined>"
+  },
+  {
+    "Email": "semirek2301@gmail.com",
+    "SIR": "SIR 23/09/1997",
+    "Type": "SIR",
+    "Subject": "This is test email",
+    "SortCode": "88-88-88",
+    "NatureOfIncident": "Bomb Threat",
+    "MessageID": "E123123123",
+    "MessageBody": "semirek2301@gmail.com SIR 23/09/1997 Sort-Code: [88-88-88] Nature-of-Incident: [Bomb Threat] Subject: [This is test email] This is test email which contains URLs like www.google.com",
+    "MessageText": "This is test email which contains URLs like <URL Quarantined>"
+  },
+  {
+    "Email": "semirek2301@gmail.com",
+    "SIR": "",
+    "Type": "Normal",
+    "Subject": "This is test email",
+    "SortCode": "",
+    "NatureOfIncident": "",
+    "MessageID": "E123123123",
+    "MessageBody": "semirek2301@gmail.com Subject: [This is test email] This is test email which contains URLs like www.google.com",
+    "MessageText": "This is test email which contains URLs like <URL Quarantined>"
+  }
+]

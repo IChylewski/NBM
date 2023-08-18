@@ -1,0 +1,20 @@
+[
+  {
+    "TwitterID": "@senderId",
+    "MessageID": "T123123123",
+    "MessageBody": "@senderId beka beka beka",
+    "MessageText": "@senderId beka beka beka"
+  },
+  {
+    "TwitterID": "@SenderID",
+    "MessageID": "T123123123",
+    "MessageBody": "@SenderID @Mention3 test test test",
+    "MessageText": "@SenderID @Mention3 test test test"
+  },
+  {
+    "TwitterID": "@TestSender",
+    "MessageID": "T123123123",
+    "MessageBody": "@TestSender This is tweet it contains @mentions #hashtags and different abbreviations like AFK",
+    "MessageText": "@TestSender This is tweet it contains @mentions #hashtags and different abbreviations like AFK <Away from keyboard>"
+  }
+]

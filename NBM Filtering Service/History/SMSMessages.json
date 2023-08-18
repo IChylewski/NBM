@@ -1,0 +1,44 @@
+[
+  {
+    "PhoneNumber": "+447746252576",
+    "MessageID": "S123123123",
+    "MessageBody": "beka beka beka beka beka beka",
+    "MessageText": "beka beka beka beka beka beka"
+  },
+  {
+    "PhoneNumber": "+321321321",
+    "MessageID": "S123653123",
+    "MessageBody": "second",
+    "MessageText": "test"
+  },
+  {
+    "PhoneNumber": "+44123123123",
+    "MessageID": "S123123123",
+    "MessageBody": "beka test test beka",
+    "MessageText": "test test"
+  },
+  {
+    "PhoneNumber": "+447746252576",
+    "MessageID": "S123123123",
+    "MessageBody": "Phone-Number: [+447746252576] This is test SMS message ROTFL B4N test test",
+    "MessageText": "Phone-Number: [+447746252576] This is test SMS message ROTFL <Rolling on the floor laughing> B4N <Bye for now> test test"
+  },
+  {
+    "PhoneNumber": "99999999",
+    "MessageID": "S123123123",
+    "MessageBody": "Phone-Number: [99999999] This is sms text message",
+    "MessageText": "Phone-Number: [99999999] This is sms text message"
+  },
+  {
+    "PhoneNumber": "99999999",
+    "MessageID": "S123123123",
+    "MessageBody": "Phone-Number: [99999999] This is sms text message",
+    "MessageText": "Phone-Number: [99999999] This is sms text message"
+  },
+  {
+    "PhoneNumber": "+447746252576",
+    "MessageID": "S123123123",
+    "MessageBody": "Phone-Number: [+447746252576] This is test SMS message ROTFL B4N test test",
+    "MessageText": "This is test SMS message ROTFL <Rolling on the floor laughing> B4N <Bye for now> test test"
+  }
+]
